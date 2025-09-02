@@ -15,7 +15,7 @@ const App = () => {
   return (
      
     // initially top pr jo background image hai uske liye => jo pure entire web page pr aayega home.jsx m styling k baad
-    <div className="bg-[url('./src/assets/bgImage.svg')]  bg-contain">
+    <div className="bg-[url('./assets/bgImage.svg')]  bg-contain">
 
       <Toaster/>
 
