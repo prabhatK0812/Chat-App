@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import assets, { messagesDummyData } from '../assets/assets'
 import { formatMessageTime } from '../lib/utils'
 
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 import toast from 'react-hot-toast'
-import { ChatContext } from '../../context/chatContext'
+import { ChatContext } from '../context/ChatContext'
 
 const ChatContainer = () => {  // getting propts & destructuring it (inside curly bracket) => after backend we will get data from context so remove it
   
