@@ -62,5 +62,5 @@ Share text, images, and files in real-time.
 Manage chats across devices with persistent sessions.
 
 🚀 Future Enhancements
-📞 Voice & video calls
+📞 Voice & video(coming soon) calls
 
