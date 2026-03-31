@@ -9,6 +9,8 @@ import userRouter from "./routes/userRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
 import { Server } from "socket.io";
 
+import ServerlessHttp from "serverless-http";
+
 // 1.Create Express app and HTTP server
 
 const app = express();
