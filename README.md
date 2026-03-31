@@ -29,7 +29,7 @@ Real-time Communication: Socket.io
 git clone https://github.com/username/quickchat.git
 cd quickchat
 
-2️⃣ Backend Setup
+2️⃣ Backend Setup :
 cd server
 npm install
 Create .env file in server/:
@@ -43,7 +43,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 Run backend server:
 npm run dev
 
-3️⃣ Frontend Setup
+3️⃣ Frontend Setup :
 cd client
 npm install
 Create .env file in client/:
