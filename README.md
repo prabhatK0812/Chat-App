@@ -24,7 +24,7 @@ Authentication: JWT
 Cloud & Storage: Cloudinary
 Real-time Communication: Socket.io
 
-⚡ Getting Started
+⚡ Getting Started :
 1️⃣ Clone the Repository
 git clone https://github.com/username/quickchat.git
 cd quickchat
