@@ -8,7 +8,7 @@
 </div>
 
 
-✨ Features :
+✨ Features : :
 🔐 Secure login & authentication with JWT
 💬 Real-time chat using Socket.io
 👥 Group chat creation & management
