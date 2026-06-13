@@ -16,7 +16,7 @@
 🎨 Modern, responsive UI built with React + TailwindCSS
 ☁️ Cloud storage integration
 
-🛠️ Tech Stack ::
+🛠️ Tech Stack :
 Frontend: React, TailwindCSS
 Backend: Node.js, Express.js
 Database: MongoDB
