@@ -54,7 +54,7 @@ npm run dev
 📍 Frontend: http://localhost:5173
 📍 Backend: http://localhost:5000
 
-🎯 Usage ::
+🎯 Usage :
 Register/Login with secure authentication.
 Start private chats.
 Share text, images, and files in real-time.
