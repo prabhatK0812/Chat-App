@@ -48,7 +48,7 @@ cd client
 npm install
 Create .env file in client/:
 VITE_BASE_URL=http://localhost:5000
-Run frontend server:
+Run frontend server :
 npm run dev
 
 📍 Frontend: http://localhost:5173
