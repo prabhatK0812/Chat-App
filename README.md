@@ -24,7 +24,7 @@ Authentication: JWT
 Cloud & Storage: Cloudinary
 Real-time Communication: Socket.io
 
-⚡ Getting Started
+⚡ Getting Started :
 1️⃣ Clone the Repository
 git clone https://github.com/username/quickchat.git
 cd quickchat
@@ -48,7 +48,7 @@ cd client
 npm install
 Create .env file in client/:
 VITE_BASE_URL=http://localhost:5000
-Run frontend server:
+Run frontend server :
 npm run dev
 
 📍 Frontend: http://localhost:5173
@@ -61,6 +61,6 @@ Share text, images, and files in real-time.
 
 Manage chats across devices with persistent sessions.
 
-🚀 Future Enhancements
+🚀 Future Enhancements :
 📞 Voice & video(coming soon) calls
 
