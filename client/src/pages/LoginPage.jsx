@@ -43,8 +43,13 @@ const LoginPage = () => {
     justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl'>
 
       {/* ---------#left side-------- */}
-      <img src={assets.logo_big} alt="" className='w-[min(30vw,250px)]'/>
+      {/* <img src={assets.logo_big} alt="" className='w-[min(30vw,250px)]'/> */}
 
+      {/* updated logo for quickchat (svg file) in public folder (for better performance) instead of importing it from assets.js file */}
+      <div className='flex flex-col items-center gap-2'>
+        <img src={'/messenger.svg'} alt="QuickCHat Logo" className='w-[min(30vw,250px)]'/>
+        <span className='text-2xl font-bold text-white'>Pingly</span>
+      </div>
 
       {/* ---------#right side--------- */}
 

@@ -107,69 +107,45 @@ export const sendMessage = async (req,res) => {
 
     // for sending message we will get the message data 
 
-    const {text,image} =req.body; // destructuring the text & image from req body
+    const {text, image, file, fileName, fileType, voice, duration} = req.body; // destructuring the text, image, file, voice from req body
     const receiverId = req.params.id;
     const senderId = req.user._id;
 
-    let imageUrl;
+    let imageUrl, fileUrl, voiceUrl;
+
+    // Upload image if exists
     if(image) {
       const uploadResponse = await cloudinary.uploader.upload(image)
       imageUrl = uploadResponse.secure_url;
+    }
+
+    // Upload file if exists
+    if(file) {
+      const uploadResponse = await cloudinary.uploader.upload(file, {
+        resource_type: "raw"  // important for pdf/docx/zip etc.
+      });
+      fileUrl = uploadResponse.secure_url;
+    }
+
+    // Upload voice if exists
+    if(voice) {
+      const uploadResponse = await cloudinary.uploader.upload(voice, {
+        resource_type: "video" // cloudinary voice/audio = video type
+      });
+      voiceUrl = uploadResponse.secure_url;
     }
 
     const newMessage = await Message.create({
       senderId,
       receiverId,
       text,
-      image: imageUrl
+      image: imageUrl,
+      file: fileUrl,
+      fileName,
+      fileType,
+      voice: voiceUrl,
+      duration
     })
-
-
-    // CHAT-GPT for sending message :
-    
-    // export const sendMessage = async (req, res) => {
-    //   try {
-    //     const { text, image, file, fileName, voice, duration, messageType } = req.body; 
-    //     const receiverId = req.params.id;
-    //     const senderId = req.user._id;
-    
-    //     let imageUrl, fileUrl, voiceUrl;
-    
-    //     // Upload image if exists
-    //     if (image) {
-    //       const uploadResponse = await cloudinary.uploader.upload(image);
-    //       imageUrl = uploadResponse.secure_url;
-    //     }
-    
-    //     // Upload file if exists
-    //     if (file) {
-    //       const uploadResponse = await cloudinary.uploader.upload(file, {
-    //         resource_type: "raw"  // important for pdf/docx/zip etc.
-    //       });
-    //       fileUrl = uploadResponse.secure_url;
-    //     }
-    
-    //     // Upload voice if exists
-    //     if (voice) {
-    //       const uploadResponse = await cloudinary.uploader.upload(voice, {
-    //         resource_type: "video" // cloudinary voice/audio = video type
-    //       });
-    //       voiceUrl = uploadResponse.secure_url;
-    //     }
-    
-    //     const newMessage = await Message.create({
-    //       senderId,
-    //       receiverId,
-    //       messageType,   // "text" | "image" | "file" | "voice"
-    //       text,
-    //       imageUrl,
-    //       fileUrl,
-    //       fileName,
-    //       voiceUrl,
-    //       duration,
-    //     });
-    
-
 
     // Emit to receiver socket => For displaying message to reciever in real time we will use socket.io
 

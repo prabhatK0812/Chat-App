@@ -5,6 +5,16 @@ const messageSchema = new mongoose.Schema({
   receiverId: {type: mongoose.Schema.Types.ObjectId, ref: "User", required:true},
   text: {type:String},
   image: {type:String},
+  
+  // File message support
+  file: {type:String}, // file URL from cloudinary
+  fileName: {type:String},
+  fileType: {type:String}, // mime type
+  
+  // Voice message support
+  voice: {type:String}, // voice URL from cloudinary
+  duration: {type:Number}, // duration in seconds
+  
   seen: {type: Boolean, default:false} // each message will be created with seen property false
 
 } , {timestamps:true});

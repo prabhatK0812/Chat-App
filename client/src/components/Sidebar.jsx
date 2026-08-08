@@ -160,12 +160,20 @@ const Sidebar = () => {
   };
 
   return (
-    <div className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll text-white ${selectedUser ? "max-md:hidden" : ''}`}>
+    <div className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl text-white ${selectedUser ? "max-md:hidden" : ''} flex flex-col min-h-0`}>
 
       {/* Header: Logo + Menu */}
       <div className='pb-5'>
         <div className='flex justify-between items-center'>
-          <img src={assets.logo} alt="logo" className='max-w-40' />
+
+          {/* <img src={assets.logo} alt="logo" className='max-w-40' /> */}
+
+          {/* updated logo for quickchat (svg file) in public folder (for better performance) instead of importing it from assets.js file */}
+          <div className='flex items-center gap-2'>
+            <img src={'/messenger.svg'} alt="QuickCHat Logo" className='max-w-40 w-10' />
+            <span className='text-lg font-bold'>Pingly</span>
+          </div>
+          
           <div className='relative py-2 group'>
             <img src={assets.menu_icon} alt="Menu" className='max-h-5 cursor-pointer' />
             <div className='absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block'>
@@ -190,34 +198,36 @@ const Sidebar = () => {
       </div>
 
       {/* Users List */}
-      <div className='flex flex-col'>
-        {filteredUsers.map(user => (
-          <div
-            key={user._id}
-            onClick={() => handleUserClick(user)}
-            className={`relative flex items-center gap-2 p-2 pl-4 rounded cursor-pointer max-sm:text-sm
-            ${selectedUser?._id === user._id ? 'bg-[#282142]/50' : ''}`}
-          >
-            {/* User Image */}
-            <img src={user?.profilePic || assets.avatar_icon} alt="" className='w-[35px] aspect-[1/1] rounded-full' />
+      <div className='flex-1 overflow-y-auto'>
+        <div className='flex flex-col'>
+          {filteredUsers.map(user => (
+            <div
+              key={user._id}
+              onClick={() => handleUserClick(user)}
+              className={`relative flex items-center gap-2 p-2 pl-4 rounded cursor-pointer max-sm:text-sm
+              ${selectedUser?._id === user._id ? 'bg-[#282142]/50' : ''}`}
+            >
+              {/* User Image */}
+              <img src={user?.profilePic || assets.avatar_icon} alt="" className='w-[35px] aspect-[1/1] rounded-full' />
 
-            {/* Name + Online Status */}
-            <div className='flex flex-col leading-5'>
-              <p>{user.fullName}</p>
-              {onlineUsers.includes(user._id)
-                ? <span className='text-green-400 text-xs'>Online</span>
-                : <span className='text-neutral-400 text-xs'>Offline</span>
-              }
+              {/* Name + Online Status */}
+              <div className='flex flex-col leading-5'>
+                <p>{user.fullName}</p>
+                {onlineUsers.includes(user._id)
+                  ? <span className='text-green-400 text-xs'>Online</span>
+                  : <span className='text-neutral-400 text-xs'>Offline</span>
+                }
+              </div>
+
+              {/* Unseen Messages */}
+              {unseenMessages?.[user._id] > 0 && (
+                <p className='absolute top-4 right-4 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50'>
+                  {unseenMessages[user._id]}
+                </p>
+              )}
             </div>
-
-            {/* Unseen Messages */}
-            {unseenMessages?.[user._id] > 0 && (
-              <p className='absolute top-4 right-4 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50'>
-                {unseenMessages[user._id]}
-              </p>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
     </div>

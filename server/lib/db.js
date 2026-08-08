@@ -14,7 +14,6 @@ export const connectDB = async () => {
     // provide connection string
     await mongoose.connect(`${process.env.MONGODB_URI}/quickchat`)
 
-
   }  catch (error){ // for any error
        console.log(error)
 

@@ -3,7 +3,7 @@ import assets, { imagesDummyData } from '../assets/assets'
 import { ChatContext } from '../context/ChatContext'
 import { AuthContext } from '../context/AuthContext';
 
-const RightSidebar = () => { // destructuring the selectedUser  getting from propts => after backend we will get the data from context
+const RightSidebar = ({ isOpen, onClose }) => { // destructuring the selectedUser  getting from propts => after backend we will get the data from context
 
   const {selectedUser,messages} = useContext(ChatContext); // getting selectedUser from chatContext
   
@@ -21,51 +21,71 @@ const RightSidebar = () => { // destructuring the selectedUser  getting from pro
 
 
 
-  return selectedUser && ( // when selcted user is true then only this div will be displayed
-    
-    // main div  with template literal(understand ) :
-    <div className={`bg-[#8185B2]/10 text-white w-full relative overflow-y-scroll
-    ${selectedUser ? "max-md:hidden" : ""}`}>
+  if (!selectedUser || !isOpen) return null;
 
-      {/* div for 1st part (selected user => image,name,bio): */}
-      <div className='pt-16 flex flex-col items-center gap-2 text-xs font-light mx-auto'>
-        {/* for user image (of selected user) */}
-        <img src={selectedUser?.profilePic || assets.avatar_icon} alt="" 
-        className='w-20 aspect-[1/1] rounded-full'/>
-        {/* for user name & online (green)icon */}
-        <h1 className='px-10 text-xl font-medium mx-auto flex items-center gap-2'>
-           {onlineUsers.includes(selectedUser._id) && <p className='w-2 h-2 rounded-full bg-green-500'></p>}
-          {selectedUser.fullName}
-        </h1>
-        {/* for user bio */}
-        <p className='px-10 mx-auto'>{selectedUser.bio}</p>
-      </div>
-      
-      {/* for horizontal line : */}
-      <hr className='border-[#ffffff50] my-4'/>
-
-      {/* div for : */}
-      <div className='px-5 textt-xs'>
-        <p>Media</p>
-        {/* div for images: */}
-        <div className='mt-2 max-h-[200px] overflow-y-scroll grid grid-cols-2 gap-4 opacity-80'>
-          {msgImages.map((url,index) => (  // getting images from dummy data
-            // arrow fun returning a div => if we click the img it will open image in new window
-            <div key={index } onClick={() => window.open(url)} className='cursor-pointer rounded'>
-              <img src={url} alt="" className='h-full rounded-md' />
+  return (
+    <div className='absolute inset-y-0 right-0 z-50 flex w-[320px]'>
+      <button
+        type='button'
+        onClick={onClose}
+        className='absolute inset-0 bg-black/30 backdrop-blur-sm'
+        aria-label='Close profile drawer'
+      />
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className='relative z-10 h-full w-full bg-[#0f172a] text-white shadow-2xl border-l border-white/10'
+      >
+        <div className='h-full w-full overflow-y-scroll'>
+          <div className='px-5 pt-4'>
+            <div className='flex items-center justify-between gap-2 pb-4'>
+              <button
+                type='button'
+                onClick={onClose}
+                className='inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition'
+                aria-label='Close profile drawer'
+              >
+                <img src={assets.arrow_icon} alt='Back' className='w-4 h-4 rotate-180' />
+              </button>
+              <p className='text-sm font-medium text-white/80'>Profile</p>
             </div>
-          ))}
+            <div className='pt-4 flex flex-col items-center gap-2 text-xs font-light mx-auto'>
+              <img
+                src={selectedUser?.profilePic || assets.avatar_icon}
+                alt=''
+                className='w-20 aspect-[1/1] rounded-full'
+              />
+              <h1 className='px-10 text-xl font-medium mx-auto flex items-center gap-2'>
+                {onlineUsers.includes(selectedUser._id) && (
+                  <p className='w-2 h-2 rounded-full bg-green-500' />
+                )}
+                {selectedUser.fullName}
+              </h1>
+              <p className='px-10 mx-auto'>{selectedUser.bio}</p>
+            </div>
+            <hr className='border-[#ffffff50] my-4' />
+            <div className='px-5 text-xs'>
+              <p className='text-lg font-semibold mb-3'>Media</p>
+              <div className='mt-2 max-h-[200px] overflow-y-scroll grid grid-cols-2 gap-4 opacity-80'>
+                {msgImages.map((url, index) => (
+                  <div
+                    key={index}
+                    onClick={() => window.open(url)}
+                    className='cursor-pointer rounded overflow-hidden'
+                  >
+                    <img src={url} alt='' className='h-full w-full rounded-md object-cover' />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              onClick={() => logout()}
+              className='mt-6 mb-5 mx-auto block rounded-full bg-gradient-to-r from-purple-400 to-violet-600 px-8 py-3 text-sm font-light text-white transition hover:opacity-90'
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* for logout button at bottom: */}
-      <button onClick={()=> logout()} className='absolute bottom-5 left-1/2 transform -translate-x-1/2
-      bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none 
-      text-sm font-light py-2 px-20 rounded-full cursor-pointer'>
-         Logout
-      </button>
-    
-      
     </div>
   )
 }

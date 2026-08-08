@@ -15,7 +15,10 @@ const App = () => {
   return (
      
     // initially top pr jo background image hai uske liye => jo pure entire web page pr aayega home.jsx m styling k baad
-    <div className="bg-[url('./assets/bgImage.svg')]  bg-contain">
+    // <div className="bg-[url('./assets/bgImage.svg')]  bg-contain">
+    
+    // new background image => jo pure entire web page pr aayega
+    <div className="min-h-screen bg-slate-950 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-slate-100">
 
       <Toaster/>
 

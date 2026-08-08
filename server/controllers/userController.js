@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 // Signup a new user
 
-// user signup function(async) :
+// 1: User signup function(async) :
 export const signup = async(req,res) => {
 
   // first we will get these details by destructuring the data : 
@@ -15,7 +15,6 @@ export const signup = async(req,res) => {
   try{
 
     // 1st we will check whether these data are available or not :
-
     if (!fullName || !email || !password || !bio){ // if any of these data will be missing 
       return res.json({success:false, message:"Missing Details"})
     }
@@ -61,7 +60,7 @@ export const signup = async(req,res) => {
 
 // Controller to login a user :
 
-// user login function(async) :
+// 2: User login function(async) :
 export const login = async(req,res) => {
   try {
     
@@ -95,7 +94,7 @@ export const login = async(req,res) => {
 
 // Controller to check if  user is authenticated
 
-// user authentication function :
+// 3: User authentication function :
 export const checkAuth = (req,res) => {
   // using middleware response (req.user)
   res.json({success: true , user:req.user});   // this fun will return user data when user is authenticated
@@ -104,7 +103,7 @@ export const checkAuth = (req,res) => {
 
 // Controller to update user profile details
 
-// userprofile update function :
+// 4: Userprofile update function :
 export const updateProfile = async (req,res) =>{
 
   try { 

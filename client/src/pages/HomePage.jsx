@@ -6,8 +6,7 @@ import { ChatContext } from '../context/ChatContext'
 
 
 const HomePage = () => {
-
-
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
 
   // // State variable :
   // const [selectedUser, setSelectedUser] = useState(false) 
@@ -22,8 +21,7 @@ const HomePage = () => {
 
       {/* div for creating diff components column */}
       <div  className={`backdrop-blur-xl border-2 border-gray-600 rounded-2xl 
-      overflow-hidden h-[100%] grid grid-cols-1 relative ${selectedUser ? 
-      'md:grid-cols-[1fr_1.5fr_1fr] xl:grid-cols-[1fr_2fr_1fr]' : 'md:grid-cols-2' }
+      overflow-hidden h-[100%] grid grid-cols-1 relative md:grid-cols-[1fr_2fr]
       `}> 
 
       {/* template literals is used for using (variable css) & the state variable */}
@@ -38,8 +36,10 @@ const HomePage = () => {
 
         {/* #after backend remove the propts: */}
         <Sidebar/>
-        <ChatContainer/>
-        <RightSidebar/>
+        <div className='relative overflow-hidden'>
+          <ChatContainer onOpenProfile={() => setIsProfileOpen(true)} />
+          <RightSidebar isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+        </div>
 
 
       </div>

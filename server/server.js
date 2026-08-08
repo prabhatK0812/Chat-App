@@ -14,8 +14,7 @@ import ServerlessHttp from "serverless-http";
 // 1.Create Express app and HTTP server
 
 const app = express();
-
-const server = http.createServer(app) // we are using this http create server because socketio supports this http server
+const server = http.createServer(app) // we are using this http.createServer because socketio supports this http server
 
 // 4.Initialize socket.io serer
 export const io = new Server(server,{
@@ -71,5 +70,4 @@ await connectDB ();
 
 // 1.port no where server will run :
 const PORT = process.env.PORT || 5000;
-
 server.listen(PORT, ()=>console.log("Server is running on PORT: " + PORT)); // for starting the server
