@@ -11,7 +11,6 @@ export const signup = async(req,res) => {
   // first we will get these details by destructuring the data : 
   const {fullName,email,password,bio} = req.body;  // from req body(frontend-user) we will get this data
 
-
   try{
 
     // 1st we will check whether these data are available or not :
@@ -37,12 +36,12 @@ export const signup = async(req,res) => {
 
     // now we have hased password which we will store in databse
 
-    // creating new user in mongodb databse:
+    // creating new user in mongodb database:
     const newUser = await User.create({
       fullName, email, password:hashedPassword, bio
     });
 
-    // now we have created new user in mongodb databse
+    // now we have created new user in mongodb database
     
     // creating token => using which we can authenticate the user -> to create this token we will make separate fun in lib folder
     const token  = generateToken(newUser._id)  // using token fun form utils by passing ths userid
